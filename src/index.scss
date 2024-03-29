@@ -52,6 +52,12 @@ body {
       font-size: pxToRem(32);
       margin-top: pxToRem(-20);
     }
+    .out-time{
+      margin-top: pxToRem(5);
+      span{
+        font-size: pxToRem(16);
+      }
+    }
     .mid-desc{
       font-size: pxToRem(18);
       margin-bottom: pxToRem(20);
@@ -98,3 +104,4 @@ body {
     justify-content: center;
   }
 }
+

@@ -15,22 +15,23 @@ jobs:
     runs-on: ubuntu-latest
     environment: auto-deploy-test
     steps:
-    - uses: actions/checkout@master
-    - name: Use Node.js 16.x
-      uses: actions/setup-node@v3
+    #下载代码
+    - name: Checkout
+      uses: actions/checkout@v2
+    # - uses: actions/checkout@master
+    #打包构建
+    - name: Build
+      uses: actions/setup-node@master
       with:
-        node-version: 16.16.0
-        cache: 'npm'
-    - run: npm install
-    - name: build project
-      run: npm run build --if-present
-    - name: Deploy to Server
-      uses: easingthemes/ssh-deploy@main
-      env:
-          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-          ARGS: "-rltgoDzvO --delete"
-          SOURCE: "dist/"
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: ${{ secrets.REMOTE_TARGET }}
-          EXCLUDE: "/node_modules/"
+          node-version: '16.0'
+    - run: npm install #安装依赖
+    - run: npm run build
+    # 部署到githubpages
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3#使用部署到GitHubpages的actions
+      with: 
+          brach: gh-pages
+          publish_dir: ./dist
+          github_token: ${{secrets.CICDDEMO}}
+          user_name: ${{secrets.MY_USER_NAME}}
+          commit_message: 自动部署

@@ -27,7 +27,7 @@ jobs:
       - run: npm run build
       # 部署到githubpages
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3#使用部署到GitHubpages的actions
+        uses: peaceiris/actions-gh-pages@v3   #使用部署到GitHubpages的actions
         with:
           brach: gh-pages
           publish_dir: ./dist

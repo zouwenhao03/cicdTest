@@ -78,7 +78,7 @@ function App() {
   return (
     <>
       <div className='container'>
-        <div className="title">1688进货红包</div>
+        <div className="title">1688进货红包+++</div>
         <div className="list">
           {
             list.map((item, index) => {
